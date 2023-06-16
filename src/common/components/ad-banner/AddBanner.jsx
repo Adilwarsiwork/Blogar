@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
-const AddBanner = ({img, height, width, pClass}) => {
+const AddBanner = ({ img, height, width, pClass }) => {
   return (
     <div className={`axil-banner ${pClass ? pClass : ""}`}>
       <div className="thumbnail">
@@ -9,7 +9,7 @@ const AddBanner = ({img, height, width, pClass}) => {
           <a>
             <Image
               src={img}
-              alt='Add Banner'
+              alt="Add Banner"
               height={height ? height : 200}
               width={width ? width : 1230}
               placeholder="blur"
