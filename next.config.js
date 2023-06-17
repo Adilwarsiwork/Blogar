@@ -7,6 +7,7 @@ const nextConfig = {
       : "",
 
   optimizeFonts: true,
+  swcMinify: true,
 
   images: {
     domains: ["cdn.sanity.io"],
