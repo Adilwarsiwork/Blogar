@@ -16,7 +16,7 @@ import SliderOne from "../common/components/slider/SliderOne";
 import { createClient } from "next-sanity";
 
 const HomeDefault = ({ allPosts, newsdata }) => {
-  console.log(newsdata);
+  // console.log(newsdata);
   const videoPost = allPosts.filter((post) => post.postFormat === "video");
 
   return (
@@ -24,14 +24,18 @@ const HomeDefault = ({ allPosts, newsdata }) => {
       <HeadTitle pageTitle="Home Default" />
       <HeaderOne postData={allPosts} />
       <SliderOne postData={allPosts} newsData={newsdata} />
-      <PostSectionOne postData={allPosts} />
+      <PostSectionOne postData={allPosts} newsData={newsdata} />
       <PostSectionTwo postData={allPosts} adBanner={true} />
       <CategoryList cateData={allPosts} />
       <PostSectionSix postData={allPosts} />
       <SocialOne />
       <PostSectionFive postData={allPosts} />
       <PostSectionFour postData={allPosts} adBanner={true} />
-      <PostSectionThree postData={videoPost} heading="Featured Video" />
+      <PostSectionThree
+        postData={videoPost}
+        newsData={newsdata}
+        heading="Featured Video"
+      />
       <InstagramOne parentClass="bg-color-grey" />
       <FooterOne />
     </>
@@ -69,7 +73,7 @@ export async function getStaticProps() {
   });
 
   const query = `*[_type=="news"]{newsTitle,newsLongDescription,newsShortDescription,
-                   slug,video,"newsImage":newsImage.asset->url}`;
+                   slug,"video":video.asset->,"newsImage":newsImage.asset->url,"newsCate" : newsCatagory->}`;
   const newsdata = await client.fetch(query);
 
   return {

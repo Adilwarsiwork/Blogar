@@ -5,19 +5,20 @@ const nextConfig = {
     process.env.NODE_ENV === "production"
       ? process.env.NEXT_PUBLIC_BASEPATH
       : "",
-  swcMinify: true,
+
   optimizeFonts: true,
+
   images: {
-    remotePatterns: [
-      {
-        protocol: "https",
-        hostname: "cdn.sanity.io",
-      },
-    ],
+    domains: ["cdn.sanity.io"],
   },
+
   // images: {
-  //   loader: 'akamai',
-  //   path: process.env.NEXT_PUBLIC_URL,
+  //   remotePatterns: [
+  //     {
+  //       protocol: "https",
+  //       hostname: ["cdn.sanity.io"],
+  //     },
+  //   ],
   // },
 };
 

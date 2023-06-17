@@ -3,22 +3,22 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 
 const ColorSwitcher = () => {
-  const [activeClass, SetActiveClass] = useState("Light");
+  const [activeClass, SetActiveClass] = useState("Dark");
 
   const ColorHandler = (e) => {
     var targetText = e.target.textContent;
     window.localStorage.setItem("color-mode", targetText);
   };
   useEffect(() => {
-    var colorModeStore = window.localStorage.getItem("color-mode") || "Light";
+    var colorModeStore = window.localStorage.getItem("color-mode") || "Dark";
     SetActiveClass(colorModeStore);
 
-    if (colorModeStore === "Dark") {
-      document.body.classList.add("active-dark-mode");
-      document.body.classList.remove("active-light-mode");
-    } else {
+    if (colorModeStore === "Light") {
       document.body.classList.add("active-light-mode");
       document.body.classList.remove("active-dark-mode");
+    } else {
+      document.body.classList.add("active-dark-mode");
+      document.body.classList.remove("active-light-mode");
     }
   }, [ColorHandler]);
 
@@ -66,22 +66,22 @@ const ColorSwitcher = () => {
           <li>
             <Link href="#/">
               <a
-                className={`setColor ${
-                  activeClass === "Light" ? "active" : ""
-                }`}
+                className={`setColor ${activeClass === "Dark" ? "active" : ""}`}
                 onClick={ColorHandler}
               >
-                <span title="Light Mode">Light</span>
+                <span title="Dark Mode">Dark</span>
               </a>
             </Link>
           </li>
           <li>
             <Link href="#/">
               <a
-                className={`setColor ${activeClass === "Dark" ? "active" : ""}`}
+                className={`setColor ${
+                  activeClass === "Light" ? "active" : ""
+                }`}
                 onClick={ColorHandler}
               >
-                <span title="Dark Mode">Dark</span>
+                <span title="Light Mode">Light</span>
               </a>
             </Link>
           </li>
